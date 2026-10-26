@@ -1,6 +1,11 @@
 package Test2;
 
-import static org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.function.BooleanSupplier;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -10,41 +15,15 @@ import org.junit.jupiter.api.Test;
 
 import SESIONA.Cuenta;
 
-
-class cuenta {
-
-	cuenta cuenta;
-	
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
-
-	@BeforeEach
-	void setUp() throws Exception {
-		
-		cuenta = new cuenta(0);
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-
-	import org.junit.jupiter.api.Test;
-	import static org.junit.jupiter.api.Assertions.*;
-
 	class CuentaTest {
 	    @Test
 	    void IngresarRetirar() {
 	        Cuenta cuenta = new Cuenta("12345", 50);
 
 	        assertTrue(cuenta.retirar(200));
-	        assertEquals(-150, cuenta.getSaldo());
+	        assertEquals(-150, ((SESIONA.Cuenta) cuenta).getSaldo());
 
-	        cuenta.ingresar(100);
+	        cuenta.Ingresar(100);
 	        assertEquals(-50, cuenta.getSaldo());
 
 	        assertTrue(cuenta.retirar(200));
@@ -69,7 +48,7 @@ class cuenta {
 	        assertEquals(-350, cuenta.getSaldo());
 
 	        assertTrue(cuenta.retirar(150));
-	        cuenta.ingresar(50);
+	        cuenta.Ingresar(50);
 	        assertEquals(-450, cuenta.getSaldo());
 
 	        assertFalse(cuenta.retirar(100));
@@ -79,7 +58,7 @@ class cuenta {
 	    @Test
 	    void Positivas() {
 	        Cuenta cuenta = new Cuenta("12345", 50);
-	        assertThrows(IllegalArgumentException.class, () -> cuenta.ingresar(0));
+	        assertThrows(IllegalArgumentException.class, () -> cuenta.Ingresar(0));
 	        assertThrows(IllegalArgumentException.class, () -> cuenta.retirar(-10));
 	    }
 	
