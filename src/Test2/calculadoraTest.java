@@ -15,7 +15,7 @@ class calculadoraTest {
 
     @Test
     void testResta() {
-        assertEquals(5, calculadora.Resta(3, 2));
+        assertEquals(1, calculadora.Resta(3, 2));
     }
 
     @Test
